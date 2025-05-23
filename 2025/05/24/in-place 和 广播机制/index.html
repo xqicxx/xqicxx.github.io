@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
-  <meta name="robots" content="none">
+  
   <meta name="generator" content="Hexo 7.3.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   
@@ -17,20 +17,27 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Blog</title>
+  <title>in-place 操作和广播机制 - Blog</title>
 
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://yoursite.com/404.html">
+    <meta name="description" content="in-place 操作定义1、 不允许使用临时变量 2、 x &#x3D; x + y 3、 add_、sub_、mul_等  广播机制定义张量参数可以自动扩展为相同大小。  满足条件1、 每个张量至少有一个维度 2、 满足右对齐 3、 eg：     torch.rand(2,1,1)+torch.rand(3)     - A: (2, 1, 1)     - B: (3,) → 自动补为 (1, 1,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="in-place 操作和广播机制">
+<meta property="og:url" content="http://yoursite.com/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="Blog">
+<meta property="og:description" content="in-place 操作定义1、 不允许使用临时变量 2、 x &#x3D; x + y 3、 add_、sub_、mul_等  广播机制定义张量参数可以自动扩展为相同大小。  满足条件1、 每个张量至少有一个维度 2、 满足右对齐 3、 eg：     torch.rand(2,1,1)+torch.rand(3)     - A: (2, 1, 1)     - B: (3,) → 自动补为 (1, 1,">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-23T17:11:09.117Z">
+<meta property="article:modified_time" content="2025-05-23T18:11:17.092Z">
 <meta property="article:author" content="陈易">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="in-place操作">
+<meta property="article:tag" content="广播机制">
 <meta name="twitter:card" content="summary">
   
   
   
-  
+  <meta name="keywords" content="pytorch,in-place操作,广播机制">
 
   <!-- feed -->
   
@@ -45,7 +52,7 @@
 </head>
 <body>
 
-<div class="l_body s:aa index story" id="start" layout="404" text-indent><aside class="l_left"><div class="leftbar-container">
+<div class="l_body s:aa content story" id="start" layout="post" text-indent><aside class="l_left"><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Blog</div></a></div></header>
@@ -57,28 +64,86 @@
 <nav class="menu dis-select"></nav>
 </div>
 <div class="widgets">
+
+
 <widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/"><span class="title">in-place 操作和广播机制</span></a></div></widget>
-
-
 </div>
 
 </div></aside><div class="l_main" id="main">
 
 
 
-<article class='md-text error-page'>
-  <h1><img id='error' src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/404/1c830bfcd517d.svg' alt='404'></h1>
-  <p class='what'>
-    <strong>
-      很抱歉，您访问的页面不存在
-    </strong>
-  </p>
-  <p class='why'>
-    可能是输入地址有误或该地址已被删除
-  </p>
-  <br><br>
-  <a class='button' id='back' href="/">返回主页</a>
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/pytorch/">pytorch</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-23T17:11:09.117Z">2025-05-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-05-23T18:11:17.092Z">2025-05-24</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>in-place 操作和广播机制</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="in-place-操作"><a href="#in-place-操作" class="headerlink" title="in-place 操作"></a>in-place 操作</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><pre><code>1、 不允许使用临时变量
+2、 x = x + y
+3、 add_、sub_、mul_等
+</code></pre>
+<h1 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h1><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><pre><code>张量参数可以自动扩展为相同大小。
+</code></pre>
+<h3 id="满足条件"><a href="#满足条件" class="headerlink" title="满足条件"></a>满足条件</h3><pre><code>1、 每个张量至少有一个维度
+2、 满足右对齐
+3、 eg：
+    torch.rand(2,1,1)+torch.rand(3)
+    - A: (2, 1, 1)
+    - B: (3,) → 自动补为 (1, 1, 3)
+</code></pre>
+<h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><ul>
+<li>右对齐： 从张量形状（shape）的最右侧维度开始，逐一向左比对维度大小，确保维度兼容后才能进行运算。\</li>
+<li>满足右对齐的原则：<ul>
+<li>​右对齐后，每个维度大小相等或其中一个为1​</li>
+<li>​所有维度都满足上述条件​</li>
+<li>ps：为什么维度1可以扩展成4，而3不行？​​<ul>
+<li>当某个维度大小为1时，表示该维度仅有一个元素。扩展时只需复制该元素到目标维度大小，逻辑明确且无歧义。</li>
+<li>如果维度大小为3的张量要扩展成4，必须回答：​第4个元素应该是什么？​​<ul>
+<li>是复制第一个元素？还是插值？或者是随机填充？</li>
+<li>这种操作没有统一规则，会导致计算结果不可预测。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="article-footer fs14">
+    <section id="references">
+      <div class="header"><span>参考资料</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JLPaeoE4L?spm_id_from=333.788.player.switch&vd_source=44af6b525e1ef9c5f8b5fbaa7b3e0998&p=13">Bilibili - 视频课程《in-place 操作和广播机制》</a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
 </article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/05/20/hello-world/">2025-05-20</a></div></section></div>
+
+
 
 
 
@@ -86,7 +151,14 @@
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">陈易</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel blur'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#in-place-%E6%93%8D%E4%BD%9C"><span class="toc-text">in-place 操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="toc-text">广播机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6"><span class="toc-text">满足条件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%EF%BC%9A"><span class="toc-text">注：</span></a></li></ol></li></ol></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
