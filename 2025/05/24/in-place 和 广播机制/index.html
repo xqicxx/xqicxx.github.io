@@ -28,7 +28,7 @@
 <meta property="og:description" content="in-place 操作定义1、 不允许使用临时变量 2、 x &#x3D; x + y 3、 add_、sub_、mul_等  广播机制定义张量参数可以自动扩展为相同大小。  满足条件1、 每个张量至少有一个维度 2、 满足右对齐 3、 eg：     torch.rand(2,1,1)+torch.rand(3)     - A: (2, 1, 1)     - B: (3,) → 自动补为 (1, 1,">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-23T17:11:09.117Z">
-<meta property="article:modified_time" content="2025-05-23T18:11:17.092Z">
+<meta property="article:modified_time" content="2025-05-23T18:20:40.656Z">
 <meta property="article:author" content="陈易">
 <meta property="article:tag" content="pytorch">
 <meta property="article:tag" content="in-place操作">
@@ -52,7 +52,7 @@
 </head>
 <body>
 
-<div class="l_body s:aa content story" id="start" layout="post" text-indent><aside class="l_left"><div class="leftbar-container">
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Blog</div></a></div></header>
@@ -79,7 +79,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/pytorch/">pytorch</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-23T17:11:09.117Z">2025-05-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-05-23T18:11:17.092Z">2025-05-24</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-23T17:11:09.117Z">2025-05-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-05-23T18:20:40.656Z">2025-05-24</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -138,6 +138,27 @@
       <div class="header"><span>许可协议</span></div>
       <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
 </div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="http://yoursite.com/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=http://yoursite.com/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/&title=in-place 操作和广播机制 - Blog&summary=in-place 操作定义1、 不允许使用临时变量
+2、 x = x + y
+3、 add_、sub_、mul_等
+
+广播机制定义张量参数可以自动扩展为相同大小。
+
+满足条件1、 每个张量至少有一个维度
+2、 满足右对齐
+3、 eg：..."><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=in-place 操作和广播机制 - Blog&amp;body=http://yoursite.com/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=http://yoursite.com/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/"/>
+        </div>
+        
+      </div>
     </section>
     </div>
 </article>
