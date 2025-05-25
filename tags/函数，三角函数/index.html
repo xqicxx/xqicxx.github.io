@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
-  
+  <meta name="robots" content="noindex,follow">
   <meta name="generator" content="Hexo 7.3.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   
@@ -17,27 +17,20 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>in-place 操作和广播机制 - Blog</title>
+  <title>标签：函数，三角函数 - Blog</title>
 
   
-    <meta name="description" content="in-place 操作定义1、 不允许使用临时变量 2、 x &#x3D; x + y 3、 add_、sub_、mul_等  广播机制定义张量参数可以自动扩展为相同大小。  满足条件1、 每个张量至少有一个维度 2、 满足右对齐 3、 eg：     torch.rand(2,1,1)+torch.rand(3)     - A: (2, 1, 1)     - B: (3,) → 自动补为 (1, 1,">
-<meta property="og:type" content="article">
-<meta property="og:title" content="in-place 操作和广播机制">
-<meta property="og:url" content="https://xqicxx.github.io/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Blog">
+<meta property="og:url" content="https://xqicxx.github.io/tags/%E5%87%BD%E6%95%B0%EF%BC%8C%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="in-place 操作定义1、 不允许使用临时变量 2、 x &#x3D; x + y 3、 add_、sub_、mul_等  广播机制定义张量参数可以自动扩展为相同大小。  满足条件1、 每个张量至少有一个维度 2、 满足右对齐 3、 eg：     torch.rand(2,1,1)+torch.rand(3)     - A: (2, 1, 1)     - B: (3,) → 自动补为 (1, 1,">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-23T17:11:09.117Z">
-<meta property="article:modified_time" content="2025-05-23T18:20:40.656Z">
 <meta property="article:author" content="陈易">
-<meta property="article:tag" content="pytorch">
-<meta property="article:tag" content="in-place操作">
-<meta property="article:tag" content="广播机制">
 <meta name="twitter:card" content="summary">
   
   
   
-  <meta name="keywords" content="pytorch,in-place操作,广播机制">
+  
 
   <!-- feed -->
   
@@ -52,7 +45,7 @@
 </head>
 <body>
 
-<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+<div class="l_body s:aa index story" id="start" layout="undefined" text-indent><aside class="l_left"><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Blog</div></a></div></header>
@@ -64,122 +57,30 @@
 <nav class="menu dis-select"></nav>
 </div>
 <div class="widgets">
-
-
 <widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/05/24/%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0%E3%80%81%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0/"><span class="title">统计学相关的函数、随机函数</span></a><a class="item title" href="/2025/05/24/Tensor%E7%9A%84%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/"><span class="title">Tensor的函数</span></a><a class="item title" href="/2025/05/24/Tensor%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/"><span class="title">Tensor的基本运算</span></a><a class="item title" href="/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/"><span class="title">in-place 操作和广播机制</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
 
+<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Blog</div></a></div></header>
+
+ 
 
 
 
 
-<div class="article banner top">
-  <div class="content">
-    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/pytorch/">pytorch</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-23T17:11:09.117Z">2025-05-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-05-23T18:20:40.656Z">2025-05-24</time></span></div></div></div>
-    
-    <div class="bottom only-title">
-      
-      <div class="text-area">
-        <h1 class="text title"><span>in-place 操作和广播机制</span></h1>
-        
-      </div>
-    </div>
-    
-  </div>
-  </div><article class="md-text content"><h1 id="in-place-操作"><a href="#in-place-操作" class="headerlink" title="in-place 操作"></a>in-place 操作</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><pre><code>1、 不允许使用临时变量
-2、 x = x + y
-3、 add_、sub_、mul_等
-</code></pre>
-<h1 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h1><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><pre><code>张量参数可以自动扩展为相同大小。
-</code></pre>
-<h3 id="满足条件"><a href="#满足条件" class="headerlink" title="满足条件"></a>满足条件</h3><pre><code>1、 每个张量至少有一个维度
-2、 满足右对齐
-3、 eg：
-    torch.rand(2,1,1)+torch.rand(3)
-    - A: (2, 1, 1)
-    - B: (3,) → 自动补为 (1, 1, 3)
-</code></pre>
-<h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><ul>
-<li>右对齐： 从张量形状（shape）的最右侧维度开始，逐一向左比对维度大小，确保维度兼容后才能进行运算。\</li>
-<li>满足右对齐的原则：<ul>
-<li>​右对齐后，每个维度大小相等或其中一个为1​</li>
-<li>​所有维度都满足上述条件​</li>
-<li>ps：为什么维度1可以扩展成4，而3不行？​​<ul>
-<li>当某个维度大小为1时，表示该维度仅有一个元素。扩展时只需复制该元素到目标维度大小，逻辑明确且无歧义。</li>
-<li>如果维度大小为3的张量要扩展成4，必须回答：​第4个元素应该是什么？​​<ul>
-<li>是复制第一个元素？还是插值？或者是随机填充？</li>
-<li>这种操作没有统一规则，会导致计算结果不可预测。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-<div class="article-footer fs14">
-    <section id="references">
-      <div class="header"><span>参考资料</span></div>
-      <div class="body">
-        <ul>
-        <li class="post-title">
-          <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JLPaeoE4L?spm_id_from=333.788.player.switch&vd_source=44af6b525e1ef9c5f8b5fbaa7b3e0998&p=13">Bilibili - 视频课程《in-place 操作和广播机制》</a></p>
-
-        </li>
-        </ul>
-      </div>
-    </section>
-    
-    <section id="license">
-      <div class="header"><span>许可协议</span></div>
-      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
-</div>
-    </section>
-    
-    <section id="share">
-      <div class="header"><span>分享文章</span></div>
-      <div class="body">
-        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://xqicxx.github.io/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/" /></div>
-        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://xqicxx.github.io/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/&title=in-place 操作和广播机制 - Blog&summary=in-place 操作定义1、 不允许使用临时变量
-2、 x = x + y
-3、 add_、sub_、mul_等
-
-广播机制定义张量参数可以自动扩展为相同大小。
-
-满足条件1、 每个张量至少有一个维度
-2、 满足右对齐
-3、 eg：..."><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=in-place 操作和广播机制 - Blog&amp;body=https://xqicxx.github.io/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
-        
-        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
-          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://xqicxx.github.io/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/"/>
-        </div>
-        
-      </div>
-    </section>
-    </div>
-</article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2025/05/24/Tensor%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/">Tensor的基本运算</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/05/20/hello-world/">2025-05-20</a></div></section></div>
-
-
-
-
+<div class="navbar top"><nav class="post"><a href="/">近期发布</a><a href="/categories">分类</a><a class="active" href="/tags">标签：函数，三角函数</a><a href="/archives">归档</a></nav></div>
+<div class="post-list post"><a class="post-card post" href="/2025/05/24/Tensor%E7%9A%84%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/">
+<article class="md-text"><h2 class="post-title">Tensor的函数</h2><div class="excerpt"><p>Tensor的函数三角函数
+torch.abs(input, out&#x3D;None) # 计算输入张量中每个元素的绝对值。
+torch.cos(input, out&#x3D;None) # 计算输入张量中每个元素的余弦值，输入为弧度制，输出范...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-05-24T09:24:47.556Z">2025-05-24</time></span><span class="cap breadcrumb"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg><span>pytorch</span></span></div></article>
+</a></div>
 
 
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">陈易</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-<div class="widgets">
-
-
-
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#in-place-%E6%93%8D%E4%BD%9C"><span class="toc-text">in-place 操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="toc-text">广播机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6"><span class="toc-text">满足条件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%EF%BC%9A"><span class="toc-text">注：</span></a></li></ol></li></ol></li></ol></li></ol></div><div class="widget-footer">
-
-<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
-</div></aside><div class='float-panel blur'>
+</aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
