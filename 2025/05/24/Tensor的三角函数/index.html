@@ -28,17 +28,18 @@
 <meta property="og:description" content="Tensor的函数三角函数 torch.abs(input, out&#x3D;None) # 计算输入张量中每个元素的绝对值。 torch.cos(input, out&#x3D;None) # 计算输入张量中每个元素的余弦值，输入为弧度制，输出范围 ​[-1, 1]。 torch.acos(input, out&#x3D;None) # 计算反余弦和反正弦值，输出为弧度制。 torch.cos">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-24T09:24:47.556Z">
-<meta property="article:modified_time" content="2025-05-24T10:00:47.794Z">
+<meta property="article:modified_time" content="2025-05-26T03:07:48.247Z">
 <meta property="article:author" content="陈易">
 <meta property="article:tag" content="pytorch">
 <meta property="article:tag" content="Tensor">
-<meta property="article:tag" content="函数，三角函数">
+<meta property="article:tag" content="函数">
+<meta property="article:tag" content="三角函数">
 <meta property="article:tag" content="其他的数学函数">
 <meta name="twitter:card" content="summary">
   
   
   
-  <meta name="keywords" content="pytorch,Tensor,函数，三角函数,其他的数学函数">
+  <meta name="keywords" content="pytorch,Tensor,函数,三角函数,其他的数学函数">
 
   <!-- feed -->
   
@@ -67,7 +68,7 @@
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/05/25/Hexo_blog%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/"><span class="title">Hexo图片显示问题</span></a><a class="item title" href="/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/"><span class="title">Tensor中的矩阵分解</span></a><a class="item title" href="/2025/05/24/%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0%E3%80%81%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0/"><span class="title">统计学相关的函数、随机函数</span></a><a class="item title" href="/2025/05/24/Tensor%E7%9A%84%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/"><span class="title">Tensor的函数</span></a><a class="item title" href="/2025/05/24/Tensor%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/"><span class="title">Tensor的基本运算</span></a><a class="item title" href="/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/"><span class="title">in-place 操作和广播机制</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/05/24/Tensor%E7%9A%84%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/"><span class="title">Tensor的函数</span></a><a class="item title" href="/2025/05/25/Hexo_blog%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/"><span class="title">Hexo图片显示问题</span></a><a class="item title" href="/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/"><span class="title">Tensor中的矩阵分解</span></a><a class="item title" href="/2025/05/24/%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0%E3%80%81%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0/"><span class="title">统计学相关的函数、随机函数</span></a><a class="item title" href="/2025/05/24/Tensor%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/"><span class="title">Tensor的基本运算</span></a><a class="item title" href="/2025/05/24/in-place%20%E5%92%8C%20%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/"><span class="title">in-place 操作和广播机制</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -80,7 +81,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/pytorch/">pytorch</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-24T09:24:47.556Z">2025-05-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-05-24T10:00:47.794Z">2025-05-24</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-24T09:24:47.556Z">2025-05-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-05-26T03:07:48.247Z">2025-05-26</time></span></div></div></div>
     
     <div class="bottom only-title">
       
