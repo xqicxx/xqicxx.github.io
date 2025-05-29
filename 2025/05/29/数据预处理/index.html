@@ -17,34 +17,28 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Tensor中的矩阵分解 - Blog</title>
+  <title>数据预处理 - Blog</title>
 
   
-    <meta name="description" content="Tensor中的矩阵分解矩阵分解常见的矩阵分解 LU分解：将矩阵A分解成L（下三角）矩阵和U（上三角）矩阵的乘积  “L –&gt; Lower Triangular Matrix”  “U –&gt; Upper Triangular Matrix”   QR分解：将原矩阵分解成一个正交矩阵Q和一个上三角矩阵R的乘积 EVD分解：特征值分解 SVD分解：奇异值分解  其他矩阵分解 特征值分解">
+    <meta name="description" content="数据预处理 在Python中常用的数据分析工具中，我们通常使用pandas软件包。  读取数据集 首先创建一个人工数据集，并存储在CSV（逗号分隔值）文件 ..&#x2F;data&#x2F;house_tiny.csv中。    1234567891011121314151617181920# 导入操作系统接口模块，用于处理文件和目录路径import os# 创建目录：在上级目录(&#x27;.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tensor中的矩阵分解">
-<meta property="og:url" content="https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/index.html">
+<meta property="og:title" content="数据预处理">
+<meta property="og:url" content="https://xqicxx.github.io/2025/05/29/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="Tensor中的矩阵分解矩阵分解常见的矩阵分解 LU分解：将矩阵A分解成L（下三角）矩阵和U（上三角）矩阵的乘积  “L –&gt; Lower Triangular Matrix”  “U –&gt; Upper Triangular Matrix”   QR分解：将原矩阵分解成一个正交矩阵Q和一个上三角矩阵R的乘积 EVD分解：特征值分解 SVD分解：奇异值分解  其他矩阵分解 特征值分解">
+<meta property="og:description" content="数据预处理 在Python中常用的数据分析工具中，我们通常使用pandas软件包。  读取数据集 首先创建一个人工数据集，并存储在CSV（逗号分隔值）文件 ..&#x2F;data&#x2F;house_tiny.csv中。    1234567891011121314151617181920# 导入操作系统接口模块，用于处理文件和目录路径import os# 创建目录：在上级目录(&#x27;.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/%5B01%5D%E7%89%B9%E5%BE%81%E5%80%BC%E5%88%86%E8%A7%A3.png">
-<meta property="og:image" content="https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/matrix_decomposition/%5B01%5DPCA%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC%E5%88%86%E8%A7%A3.png">
-<meta property="og:image" content="https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/%5B01%5D%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3.png">
-<meta property="og:image" content="https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/%5B01%5DLDA%E4%B8%8E%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3.png">
-<meta property="article:published_time" content="2025-05-25T07:01:13.637Z">
-<meta property="article:modified_time" content="2025-05-28T14:34:56.321Z">
+<meta property="article:published_time" content="2025-05-29T08:22:06.252Z">
+<meta property="article:modified_time" content="2025-05-29T08:55:53.340Z">
 <meta property="article:author" content="陈易">
 <meta property="article:tag" content="pytorch">
-<meta property="article:tag" content="Tensor">
-<meta property="article:tag" content="矩阵">
-<meta property="article:tag" content="矩阵分解">
-<meta property="article:tag" content="矩阵分解的方法">
+<meta property="article:tag" content="Dive into deep learning">
+<meta property="article:tag" content="数据操作">
+<meta property="article:tag" content="数据预处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/%5B01%5D%E7%89%B9%E5%BE%81%E5%80%BC%E5%88%86%E8%A7%A3.png">
   
   
   
-  <meta name="keywords" content="pytorch,Tensor,矩阵,矩阵分解,矩阵分解的方法">
+  <meta name="keywords" content="pytorch,Dive into deep learning,数据操作,数据预处理">
 
   <!-- feed -->
   
@@ -86,61 +80,70 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-25T07:01:13.637Z">2025-05-25</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-05-28T14:34:56.321Z">2025-05-28</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-29T08:22:06.252Z">2025-05-29</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-05-29T08:55:53.340Z">2025-05-29</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Tensor中的矩阵分解</span></h1>
+        <h1 class="text title"><span>数据预处理</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="Tensor中的矩阵分解"><a href="#Tensor中的矩阵分解" class="headerlink" title="Tensor中的矩阵分解"></a>Tensor中的矩阵分解</h1><h2 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h2><h3 id="常见的矩阵分解"><a href="#常见的矩阵分解" class="headerlink" title="常见的矩阵分解"></a>常见的矩阵分解</h3><ul>
-<li>LU分解：将矩阵A分解成L（下三角）矩阵和U（上三角）矩阵的乘积 <ul>
-<li>“L –&gt; Lower Triangular Matrix” </li>
-<li>“U –&gt; Upper Triangular Matrix”</li>
+  </div><article class="md-text content"><h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><ul>
+<li>在Python中常用的数据分析工具中，我们通常使用pandas软件包。</li>
 </ul>
+<h2 id="读取数据集"><a href="#读取数据集" class="headerlink" title="读取数据集"></a>读取数据集</h2><ul>
+<li><p>首先创建一个人工数据集，并存储在CSV（逗号分隔值）文件 ..&#x2F;data&#x2F;house_tiny.csv中。 </p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入操作系统接口模块，用于处理文件和目录路径</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建目录：在上级目录(&#x27;..&#x27;)中创建名为&#x27;data&#x27;的子目录</span></span><br><span class="line"><span class="comment"># exist_ok=True 表示如果目录已存在不会抛出错误</span></span><br><span class="line">os.makedirs(os.path.join(<span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;data&#x27;</span>), exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义文件路径：构建完整文件路径 &#x27;../data/house_tiny.csv&#x27;</span></span><br><span class="line">data_file = os.path.join(<span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;data&#x27;</span>, <span class="string">&#x27;house_tiny.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建并写入CSV文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(data_file, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:  <span class="comment"># 以写入模式打开文件</span></span><br><span class="line">    <span class="comment"># 写入列标题（特征说明）</span></span><br><span class="line">    f.write(<span class="string">&#x27;NumRooms,Alley,Price\n&#x27;</span>)  <span class="comment"># 房间数量，巷子类型，房屋价格</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 写入四个数据样本（包含缺失值NA）</span></span><br><span class="line">    f.write(<span class="string">&#x27;NA,Pave,127500\n&#x27;</span>)   <span class="comment"># 样本1：房间数缺失，巷子类型为铺砌，价格12.75万</span></span><br><span class="line">    f.write(<span class="string">&#x27;2,NA,106000\n&#x27;</span>)      <span class="comment"># 样本2：2个房间，巷子类型缺失，价格10.6万</span></span><br><span class="line">    f.write(<span class="string">&#x27;4,NA,178100\n&#x27;</span>)      <span class="comment"># 样本3：4个房间，巷子类型缺失，价格17.81万</span></span><br><span class="line">    f.write(<span class="string">&#x27;NA,NA,140000\n&#x27;</span>)     <span class="comment"># 样本4：房间数和巷子类型均缺失，价格14万</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>QR分解：将原矩阵分解成一个正交矩阵Q和一个上三角矩阵R的乘积</li>
-<li>EVD分解：特征值分解</li>
-<li>SVD分解：奇异值分解</li>
+<li><p>从创建的CSV文件中加载原始数据集，我们导入pandas包并调用read_csv函数。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果没有安装pandas，只需取消对以下行的注释来安装pandas</span></span><br><span class="line"><span class="comment"># !pip install pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data = pd.read_csv(data_file)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NumRooms Alley   Price</span><br><span class="line"> <span class="number">0</span>       NaN  Pave  <span class="number">127500</span></span><br><span class="line"> <span class="number">1</span>       <span class="number">2.0</span>   NaN  <span class="number">106000</span></span><br><span class="line"> <span class="number">2</span>       <span class="number">4.0</span>   NaN  <span class="number">178100</span></span><br><span class="line"> <span class="number">3</span>       NaN   NaN  <span class="number">140000</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="其他矩阵分解"><a href="#其他矩阵分解" class="headerlink" title="其他矩阵分解"></a>其他矩阵分解</h3><ul>
-<li><p>特征值分解</p>
+<h2 id="处理缺失值"><a href="#处理缺失值" class="headerlink" title="处理缺失值"></a>处理缺失值</h2><ul>
+<li><p>“NaN”项代表缺失值。</p>
+</li>
+<li><p>处理方法：</p>
 <ul>
-<li>将矩阵分解为由其特征值和特征向量表示的矩阵之积的方法</li>
-<li>特征值 VS 特征向量<br>  <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/%5B01%5D%E7%89%B9%E5%BE%81%E5%80%BC%E5%88%86%E8%A7%A3.png" alt="特征值分解"></li>
+<li>插值法<ul>
+<li>用一个替代值弥补缺失值。</li>
 </ul>
 </li>
-<li><p>PCA与特征值分解</p>
+<li>删除法<ul>
+<li>直接忽略缺失值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>举例：插值</p>
 <ul>
-<li>PCA：将<strong>n维特征</strong>映射到k维上，这k维是全新的正交特征也被称为主成分，是在原有n维特征的基础上重新构造出来的k维特征<br>  <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/matrix_decomposition/%5B01%5DPCA%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC%E5%88%86%E8%A7%A3.png" alt="PCA与特征值分解"></li>
-<li>PCA算法的优化目标就是：<ul>
-<li>降维后同一纬度的方差最大</li>
-<li>不同维度之间的相关性为0</li>
-<li>协方差矩阵</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>奇异值分解<br>  <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/%5B01%5D%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3.png" alt="奇异值分解"></p>
-</li>
-<li><p>LDA与奇异值分解<br>  <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/%5B01%5DLDA%E4%B8%8E%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3.png" alt="LDA与奇异值分解"></p>
-</li>
-<li><p>EVD分解 VS SVD分解</p>
+<li><p>处理前</p>
 <ul>
-<li>矩阵方阵且满秩（可对角化）</li>
-<li>矩阵分解不等于特征降维度</li>
-<li>协方差矩阵描述方差和相关性</li>
+<li>描述：通过位置索引iloc，我们将data分成inputs和outputs， 其中前者为data的前两列，而后者为data的最后一列。 对于inputs中缺少的数值，我们用同一列的均值替换“NaN”项。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">inputs, outputs = data.iloc[:, <span class="number">0</span>:<span class="number">2</span>], data.iloc[:, <span class="number">2</span>]</span><br><span class="line">inputs = inputs.fillna(inputs.mean())</span><br><span class="line"><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
-<li><p>Pytorch中的奇异值分解</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    NumRooms Alley</span><br><span class="line"><span class="number">0</span>       <span class="number">3.0</span>  Pave</span><br><span class="line"><span class="number">1</span>       <span class="number">2.0</span>   NaN</span><br><span class="line"><span class="number">2</span>       <span class="number">4.0</span>   NaN</span><br><span class="line"><span class="number">3</span>       <span class="number">3.0</span>   NaN</span><br></pre></td></tr></table></figure></li>
+<li><p>处理后</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 pandas 的 get_dummies 方法对分类特征进行独热编码（One-Hot Encoding）</span></span><br><span class="line"><span class="comment"># 参数说明：</span></span><br><span class="line"><span class="comment"># - dummy_na=True: 将缺失值（NaN）也视为一个独立类别进行编码</span></span><br><span class="line"><span class="comment"># 操作结果：</span></span><br><span class="line"><span class="comment"># - 对 inputs DataFrame 中所有对象类型（object）或分类（category）的列生成哑变量</span></span><br><span class="line"><span class="comment"># - 每列的不同取值（包括 NaN）将被扩展为新的二进制列（0/1 表示是否存在该类别）</span></span><br><span class="line"></span><br><span class="line">inputs = pd.get_dummies(inputs, dummy_na=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印处理后的数据</span></span><br><span class="line"><span class="comment"># 输出示例：</span></span><br><span class="line"><span class="comment"># 原始列 Alley 包含 [&#x27;Pave&#x27;, &#x27;Gravel&#x27;, NaN] 三类，转换后将生成三列：</span></span><br><span class="line"><span class="comment"># - Alley_Pave（是否为铺砌道路）</span></span><br><span class="line"><span class="comment"># - Alley_Gravel（是否为碎石道路）</span></span><br><span class="line"><span class="comment"># - Alley_nan（是否存在道路类型缺失）</span></span><br><span class="line"><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   NumRooms  Alley_Pave  Alley_nan</span><br><span class="line"><span class="number">0</span>       <span class="number">3.0</span>           <span class="number">1</span>          <span class="number">0</span></span><br><span class="line"><span class="number">1</span>       <span class="number">2.0</span>           <span class="number">0</span>          <span class="number">1</span></span><br><span class="line"><span class="number">2</span>       <span class="number">4.0</span>           <span class="number">0</span>          <span class="number">1</span></span><br><span class="line"><span class="number">3</span>       <span class="number">3.0</span>           <span class="number">0</span>          <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>torch.svd()</li>
+<li>描述：<ul>
+<li>对于inputs中的类别值或离散值，我们将“NaN”视为一个类别。 由于“巷子类型”（“Alley”）列只接受两种类型的类别值“Pave”和“NaN”， pandas可以自动将此列转换为两列“Alley_Pave”和“Alley_nan”。 巷子类型为“Pave”的行会将“Alley_Pave”的值设置为1，“Alley_nan”的值设置为0。 缺少巷子类型的行会将“Alley_Pave”和“Alley_nan”分别设置为0和1。</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="转换成张量格式"><a href="#转换成张量格式" class="headerlink" title="转换成张量格式"></a>转换成张量格式</h2><ul>
+<li><p>inputs和outputs中的所有条目都是数值类型，它们可以转换为张量格式。 </p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">X = torch.tensor(inputs.to_numpy(dtype=<span class="built_in">float</span>))</span><br><span class="line">y = torch.tensor(outputs.to_numpy(dtype=<span class="built_in">float</span>))</span><br><span class="line">X, y</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    (tensor([</span><br><span class="line">            [<span class="number">3.</span>, <span class="number">1.</span>, <span class="number">0.</span>],</span><br><span class="line">            [<span class="number">2.</span>, <span class="number">0.</span>, <span class="number">1.</span>],</span><br><span class="line">            [<span class="number">4.</span>, <span class="number">0.</span>, <span class="number">1.</span>],</span><br><span class="line">            [<span class="number">3.</span>, <span class="number">0.</span>, <span class="number">1.</span>]], dtype=torch.float64),</span><br><span class="line">tensor([<span class="number">127500.</span>, <span class="number">106000.</span>, <span class="number">178100.</span>, <span class="number">140000.</span>], dtype=torch.float64))</span><br></pre></td></tr></table></figure></li>
 </ul>
 
 <div class="article-footer fs14">
@@ -149,7 +152,7 @@
       <div class="body">
         <ul>
         <li class="post-title">
-          <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JLPaeoE4L?spm_id_from=333.788.videopod.episodes&vd_source=44af6b525e1ef9c5f8b5fbaa7b3e0998&p=22">Bilibili - 视频课程《Tensor的基本运算》p.022 - p.023</a></p>
+          <p><a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/chapter_preliminaries/pandas.html">Dive into deep learning 2.2</a></p>
 
         </li>
         </ul>
@@ -165,21 +168,23 @@
     <section id="share">
       <div class="header"><span>分享文章</span></div>
       <div class="body">
-        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/" /></div>
-        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/&title=Tensor中的矩阵分解 - Blog&summary=Tensor中的矩阵分解矩阵分解常见的矩阵分解
-LU分解：将矩阵A分解成L（下三角）矩阵和U（上三角）矩阵的乘积 
-“L –&gt; Lower Triangular Matrix” 
-“U –&gt; Upper Triangula..."><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=Tensor中的矩阵分解 - Blog&amp;body=https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://xqicxx.github.io/2025/05/29/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://xqicxx.github.io/2025/05/29/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/&title=数据预处理 - Blog&summary=数据预处理
+在Python中常用的数据分析工具中，我们通常使用pandas软件包。
+
+读取数据集
+首先创建一个人工数据集，并存储在CSV（逗号分隔值）文件 ..&#x2F;data&#x2F;house_tiny.csv中。 
+  1..."><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=数据预处理 - Blog&amp;body=https://xqicxx.github.io/2025/05/29/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
         
         <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
-          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://xqicxx.github.io/2025/05/25/Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/"/>
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://xqicxx.github.io/2025/05/29/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
         </div>
         
       </div>
     </section>
     </div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2025/05/25/Hexo_blog%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/">Hexo图片显示问题</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/05/24/%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0%E3%80%81%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0/">统计学相关的函数、随机函数</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/05/29/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/">Pytorch数据操作</a></div></section></div>
 
 
 
@@ -193,7 +198,7 @@ LU分解：将矩阵A分解成L（下三角）矩阵和U（上三角）矩阵的
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tensor%E4%B8%AD%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3"><span class="toc-text">Tensor中的矩阵分解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3"><span class="toc-text">矩阵分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3"><span class="toc-text">常见的矩阵分解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3"><span class="toc-text">其他矩阵分解</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">数据预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">读取数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="toc-text">处理缺失值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E6%88%90%E5%BC%A0%E9%87%8F%E6%A0%BC%E5%BC%8F"><span class="toc-text">转换成张量格式</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
